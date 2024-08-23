@@ -176,6 +176,76 @@
   animation-name: AnimLine;
 }
 
+@keyframes AnimScollIndicator {
+  0% {
+    transform: translate3d(-1px, 0, 0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate3d(-1px, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-1px, 8px, 0);
+    opacity: 0;
+  }
+}
+
+.scroll-indicator {
+  border-radius: 20px;
+  width: 26px;
+  height: 38px;
+  position: fixed;
+  bottom: 64px;
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+  transition-timing-function: ease;
+  
+
+  &::before {
+    content: '';
+    height: 7px;
+    width: 2px;
+    border-radius: 4px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-1px);
+    animation: AnimScollIndicator 2s ease infinite;
+  }
+}
+
+.addbefore-light::before {
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.addbefore-dark::before {
+  background: rgba(255,255,255, 0.3);
+}
+
+@keyframes AnimMobileScroll {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.mobile-scroll-indicator {
+  position: fixed;
+  bottom: 20px;
+  animation-name: AnimMobileScroll;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(.8,.1,.27,1);
+  transition-duration: 0.4s;
+}
+
 @media (min-width: 1600px) {
   .section-padding {
     padding-left: 120px;
@@ -244,6 +314,10 @@
 
   .text-section {
     top: -16px;
+  }
+
+  .scroll-indicator, .mobile-scroll-indicator {
+    display: none;
   }
 }
 

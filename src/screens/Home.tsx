@@ -7,13 +7,14 @@ import useParallax from "../hooks/useParallax";
 import "./Home.css";
 import { TextDecrypt } from "../utils/TextDecrypt";
 import useInterval from "../hooks/useInterval";
+import { media } from "../utils/style";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const SphereAnim = lazy(() => import("../background/SphereAnim"));
 
 const Home = (props: any) => {
   const { theme } = useContext(ThemeContext);
-  const { id, sectionRef, disciplines, ...rest } = props;
+  const { id, sectionRef, disciplines, scrollIndicatorHidden, ...rest } = props;
   const offset = useParallax(-0.6);
   const titleId = `${id}-title`;
   const [disciplineIndex, setDisciplineIndex] = useState(0);
@@ -142,6 +143,56 @@ const Home = (props: any) => {
                 </span>
               </h2>
             </header>
+            {window.innerWidth > media.tablet && (
+              <div
+                className={`scroll-indicator ${
+                  theme === "light" ? "addbefore-light" : "addbefore-dark"
+                }`}
+                style={{
+                  opacity: `${
+                    status === "entered" && !scrollIndicatorHidden ? 1 : 0
+                  }`,
+                  transform: `translate3d(0, ${
+                    scrollIndicatorHidden ? "20px" : 0
+                  }, 0)`,
+                  border: `2px solid ${
+                    theme === "light"
+                      ? "rgba(0, 0, 0, 0.32)"
+                      : "rgba(255, 255, 255, 0.4)"
+                  }`,
+                }}
+              ></div>
+            )}
+            {window.innerWidth <= media.tablet && (
+              <div
+              className="mobile-scroll-indicator"
+                style={{
+                  opacity: `${
+                    status === "entered" && !scrollIndicatorHidden ? 1 : 0
+                  }`,
+                  transform: `translate3d(0, ${
+                    scrollIndicatorHidden ? "20px" : 0
+                  }, 0)`,
+                }}
+              >
+                <svg
+                  style={{
+                    display: "block",
+                    stroke: `${
+                      theme === "light"
+                        ? "rgba(0, 0, 0, 0.4)"
+                        : "rgba(255, 255, 255, 0.5)"
+                    }`,
+                  }}
+                  stroke={"white"}
+                  width="43"
+                  height="15"
+                  viewBox="0 0 43 15"
+                >
+                  <path d="M1 1l20.5 12L42 1" strokeWidth="2" fill="none" />
+                </svg>
+              </div>
+            )}
           </Fragment>
         )}
       </Transition>

@@ -7,7 +7,7 @@ const MainScreen = () => {
   const intro = useRef();
   return (
     <>
-      <Home id="intro" sectionRef={intro} disciplines={disciplines} />
+      <Home id="intro" sectionRef={intro} disciplines={disciplines} scrollIndicatorHidden={false}/>
     </>
   );
 };
