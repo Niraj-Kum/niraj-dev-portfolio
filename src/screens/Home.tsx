@@ -1,5 +1,5 @@
 import { Fragment, lazy, Suspense, useContext, useMemo, useState } from "react";
-import { Transition } from "react-transition-group";
+import { Transition, TransitionGroup } from "react-transition-group";
 import { ThemeContext } from "../context/ThemeProvider";
 import prerender from "../utils/prerender";
 import { reflow } from "../utils/transition";
@@ -111,35 +111,46 @@ const Home = (props: any) => {
                   className="description-row"
                   style={{ opacity: `${prerender ? 0 : 1}` }}
                 >
-                  {currentDisciplines.map((_item: any, index: any) => (
-                    <span
-                      key={_item + "_" + index}
-                      className="add-plus developer-word developer-word-delay2"
-                      style={
-                        status === "exiting"
-                          ? {
-                              color: `${
-                                theme === "light"
-                                  ? "rgba(0, 0, 0, 0)"
-                                  : "rgba(255, 255, 255, 1)"
-                              }`,
-                              opacity: 0,
-                              position: "absolute",
-                              top: 0,
-                              zIndex: 0,
+                  <TransitionGroup>
+                    {currentDisciplines.map((_item: any, index: any) => (
+                      <Transition
+                        appear
+                        timeout={{ enter: 3000, exit: 2000 }}
+                        key={_item + "_" + index}
+                        onEnter={reflow}
+                      >
+                        {(wordStatus) => (
+                          <span
+                            key={_item + "_" + index}
+                            className="add-plus developer-word developer-word-delay2"
+                            style={
+                              wordStatus === "exiting"
+                                ? {
+                                    color: `${
+                                      theme === "light"
+                                        ? "rgba(0, 0, 0, 0)"
+                                        : "rgba(255, 255, 255, 1)"
+                                    }`,
+                                    opacity: 0,
+                                    position: "absolute",
+                                    top: 0,
+                                    zIndex: 0,
+                                  }
+                                : {
+                                    color: `${
+                                      theme === "light"
+                                        ? "rgba(0, 0, 0, 0)"
+                                        : "rgba(255, 255, 255, 1)"
+                                    }`,
+                                  }
                             }
-                          : {
-                              color: `${
-                                theme === "light"
-                                  ? "rgba(0, 0, 0, 0)"
-                                  : "rgba(255, 255, 255, 1)"
-                              }`,
-                            }
-                      }
-                    >
-                      {_item}
-                    </span>
-                  ))}
+                          >
+                            {_item}
+                          </span>
+                        )}
+                      </Transition>
+                    ))}
+                  </TransitionGroup>
                 </span>
               </h2>
             </header>
@@ -165,7 +176,7 @@ const Home = (props: any) => {
             )}
             {window.innerWidth <= media.tablet && (
               <div
-              className="mobile-scroll-indicator"
+                className="mobile-scroll-indicator"
                 style={{
                   opacity: `${
                     status === "entered" && !scrollIndicatorHidden ? 1 : 0
