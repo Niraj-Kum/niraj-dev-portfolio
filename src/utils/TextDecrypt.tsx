@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
 import { useDencrypt } from "use-dencrypt-effect";
-import './TextDecrypt.css'
+import './TextDecrypt.css';
+import { useTheme } from "@mui/material";
+// import { useTheme } from "styled-components";
 
 interface IDecryptOptions {
   chars: string;
@@ -14,6 +16,7 @@ const decryptOptions: IDecryptOptions = {
 };
 
 export const TextDecrypt = (props: any) => {
+  const theme = useTheme();
   const [result, setResult] = useDencrypt(decryptOptions);
 
   useEffect(() => {
@@ -27,7 +30,8 @@ export const TextDecrypt = (props: any) => {
   }, [props.text]);
 
   return (
-    <span className="decoder-text">
+    // <span className={`decoder-text text-black`}>
+     <span className={`decoder-text`} style={{color: `${theme.palette.text.secondary}`}}>
       <span className="decoder-text__label">{result}</span>
       {" "}
     </span>

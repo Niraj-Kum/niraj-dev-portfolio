@@ -1,21 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
 import Home from "./Home";
-import Project from "./Project";
-import Skills from "./Skills";
 
 const disciplines = ["Engineer", "Full Stack", "Coder"];
 
 const MainScreen = () => {
   const intro = useRef<any>();
-  const projectOne = useRef<any>();
-  const skillRef = useRef<any>();
   const [visibleSections, setVisibleSections] = useState<any>([]);
   const [scrollIndicatorHidden, setScrollIndicatorHidden] =
     useState<boolean>(false);
 
   useEffect(() => {
-    const revealSections = [intro, projectOne];
+    const revealSections = [intro];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -66,21 +62,21 @@ const MainScreen = () => {
         scrollIndicatorHidden={scrollIndicatorHidden}
       />
       {/* <Experience /> */}
-      <Project
+      {/* <Project
         id="project-1"
         sectionRef={projectOne}
         visible={true}
         index="01"
         title="A Tool for Everything"
         description="Creating a platfrom to help developers build better software."
-        // buttonText="View Project"
-        // buttonTo="/projects/dtt"
-        // imageSrc={useMemo(() => [`${dttProject} 980w, ${dttProjectLarge} 1376w`], [])}
-        // imageAlt={useMemo(() => ['DevTech Tools Landing Page'], [])}
-        // imagePlaceholder={useMemo(() => [dttProjectPlaceholder], [])}
+        buttonText="View Project"
+        buttonTo="/projects/dtt"
+        imageSrc={useMemo(() => [`${dttProject} 980w, ${dttProjectLarge} 1376w`], [])}
+        imageAlt={useMemo(() => ['DevTech Tools Landing Page'], [])}
+        imagePlaceholder={useMemo(() => [dttProjectPlaceholder], [])}
         imageType="laptop"
       />
-      <Skills sectionRef={skillRef} />
+      <Skills sectionRef={skillRef} /> */}
     </>
   );
 };

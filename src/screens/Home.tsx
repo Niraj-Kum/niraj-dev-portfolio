@@ -1,27 +1,30 @@
-import { Fragment, lazy, Suspense, useContext, useMemo, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Fragment, lazy, Suspense, useMemo, useState } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
-import { ThemeContext } from "../context/ThemeProvider";
 import prerender from "../utils/prerender";
 import { reflow } from "../utils/transition";
-import useParallax from "../hooks/useParallax";
 import "./Home.css";
 import { TextDecrypt } from "../utils/TextDecrypt";
 import useInterval from "../hooks/useInterval";
 import { media } from "../utils/style";
+import { useTheme } from "@mui/material";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const SphereAnim = lazy(() => import("../background/SphereAnim"));
+const SphereAnim = lazy(() =>
+  import("../background/SphereAnim").then((module) => ({
+    default: module.SphereAnim,
+  }))
+);
 
 const Home = (props: any) => {
-  const { theme } = useContext(ThemeContext);
+  const theme = useTheme();
+  // console.log(theme);
   const { id, sectionRef, disciplines, scrollIndicatorHidden, ...rest } = props;
-  const offset = useParallax(-0.6);
   const titleId = `${id}-title`;
   const [disciplineIndex, setDisciplineIndex] = useState(0);
   const currentDisciplines = useMemo(
     () =>
       disciplines.filter(
-        (item: any, index: number) => index === disciplineIndex
+        (_item: any, index: number) => index === disciplineIndex
       ),
     [disciplineIndex, disciplines]
   );
@@ -45,7 +48,7 @@ const Home = (props: any) => {
       className={`home-section section-padding`}
     >
       <Transition
-        key={theme}
+        key={theme.palette.mode}
         appear={!prerender}
         in={!prerender}
         timeout={3000}
@@ -54,31 +57,19 @@ const Home = (props: any) => {
         {(status) => (
           <Fragment>
             {!prerender && (
-              <Suspense fallback={null}>
-                <SphereAnim
-                  style={{
-                    transform: `translate3d(0, ${offset}px, 0)`,
-                    position: "fixed",
-                  }}
-                />
+              <Suspense>
+                <SphereAnim />
               </Suspense>
             )}
             <header className="text-section">
-              <h1
-                className="decrypt-name"
-                style={{
-                  color: `${
-                    theme === "light"
-                      ? "rgba(rgba(0, 0, 0, 0.8)"
-                      : "rgba(255, 255, 255, 1)"
-                  }`,
-                }}
-              >
+              <h1 className="decrypt-name">
                 <TextDecrypt text={"Niraj Kumar"} />
               </h1>
               <h2
                 className={"dev-description"}
-                style={{ fontWeight: `${theme === "light" ? 600 : 500}` }}
+                style={{
+                  fontWeight: `${theme.palette.mode === "light" ? 600 : 500}`,
+                }}
               >
                 <span
                   className="description-row"
@@ -88,10 +79,14 @@ const Home = (props: any) => {
                     className={`developer-word developer-word-delay developer-word-delay`}
                     style={{
                       color: `${
-                        theme === "light"
+                        theme.palette.mode === "dark"
                           ? "rgba(0, 0, 0, 0)"
                           : "rgba(255, 255, 255, 1)"
                       }`,
+                      animationName:
+                        theme.palette.mode === "dark"
+                          ? "AnimTextRevealDark"
+                          : "AnimTextRevealLight",
                     }}
                   >
                     Developer
@@ -100,7 +95,7 @@ const Home = (props: any) => {
                     className="line"
                     style={{
                       background: `${
-                        theme === "light"
+                        theme.palette.mode === "light"
                           ? "rgba(0, 0, 0, 0.24)"
                           : "rgba(255,255,255, 0.3)"
                       }`,
@@ -115,7 +110,7 @@ const Home = (props: any) => {
                     {currentDisciplines.map((_item: any, index: any) => (
                       <Transition
                         appear
-                        timeout={{ enter: 3000, exit: 2000 }}
+                        timeout={{ enter: 4000, exit: 2000 }}
                         key={_item + "_" + index}
                         onEnter={reflow}
                       >
@@ -127,21 +122,29 @@ const Home = (props: any) => {
                               wordStatus === "exiting"
                                 ? {
                                     color: `${
-                                      theme === "light"
+                                      theme.palette.mode === "light"
                                         ? "rgba(0, 0, 0, 0)"
-                                        : "rgba(255, 255, 255, 1)"
+                                        : "rgba(255, 255, 255, 0)"
                                     }`,
                                     opacity: 0,
                                     position: "absolute",
                                     top: 0,
                                     zIndex: 0,
+                                    animationName:
+                                      theme.palette.mode === "dark"
+                                        ? "AnimTextRevealDark"
+                                        : "AnimTextRevealLight",
                                   }
                                 : {
                                     color: `${
-                                      theme === "light"
+                                      theme.palette.mode === "light"
                                         ? "rgba(0, 0, 0, 0)"
-                                        : "rgba(255, 255, 255, 1)"
+                                        : "rgba(255, 255, 255, 0)"
                                     }`,
+                                    animationName:
+                                      theme.palette.mode === "dark"
+                                        ? "AnimTextRevealDark"
+                                        : "AnimTextRevealLight",
                                   }
                             }
                           >
@@ -157,7 +160,9 @@ const Home = (props: any) => {
             {window.innerWidth > media.tablet && (
               <div
                 className={`scroll-indicator ${
-                  theme === "light" ? "addbefore-light" : "addbefore-dark"
+                  theme.palette.mode === "light"
+                    ? "addbefore-light"
+                    : "addbefore-dark"
                 }`}
                 style={{
                   opacity: `${
@@ -167,7 +172,7 @@ const Home = (props: any) => {
                     scrollIndicatorHidden ? "20px" : 0
                   }, 0)`,
                   border: `2px solid ${
-                    theme === "light"
+                    theme.palette.mode === "light"
                       ? "rgba(0, 0, 0, 0.32)"
                       : "rgba(255, 255, 255, 0.4)"
                   }`,
@@ -190,7 +195,7 @@ const Home = (props: any) => {
                   style={{
                     display: "block",
                     stroke: `${
-                      theme === "light"
+                      theme.palette.mode === "light"
                         ? "rgba(0, 0, 0, 0.4)"
                         : "rgba(255, 255, 255, 0.5)"
                     }`,

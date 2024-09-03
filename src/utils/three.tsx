@@ -1,9 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Cache, TextureLoader } from 'three';
+import { DRACOLoader, GLTFLoader } from 'three-stdlib';
+
+// Enable caching for all loaders
+Cache.enabled = true;
+
+const dracoLoader = new DRACOLoader();
+const gltfLoader = new GLTFLoader();
+dracoLoader.setDecoderPath('/draco/');
+gltfLoader.setDRACOLoader(dracoLoader);
+
+/**
+ * GLTF model loader configured with draco decoder
+ */
+export const modelLoader = gltfLoader;
+export const textureLoader = new TextureLoader();
+
 /**
  * Clean up a scene's materials and geometry
  */
 export const cleanScene = (scene: any) => {
-  scene.traverse((object: any) => {
+  scene?.traverse((object: any) => {
     if (!object.isMesh) return;
 
     object.geometry.dispose();
@@ -16,8 +33,6 @@ export const cleanScene = (scene: any) => {
       }
     }
   });
-
-  scene.dispose();
 };
 
 /**
@@ -30,6 +45,9 @@ export const cleanMaterial = (material: any) => {
     const value = material[key];
     if (value && typeof value === 'object' && 'minFilter' in value) {
       value.dispose();
+
+      // Close GLTF bitmap textures
+      value.source?.data?.close?.();
     }
   }
 };
@@ -39,7 +57,6 @@ export const cleanMaterial = (material: any) => {
  */
 export const cleanRenderer = (renderer: any) => {
   renderer.dispose();
-  renderer.forceContextLoss();
   renderer = null;
 };
 
@@ -53,6 +70,16 @@ export const removeLights = (lights: any) => {
 };
 
 /**
- * A reasonable default pixel ratio
+ * Get child by name
  */
-export const renderPixelRatio = 2;
+export const getChild = (name: any, object: any) => {
+  let node;
+
+  object.traverse((child: any) => {
+    if (child.name === name) {
+      node = child;
+    }
+  });
+
+  return node;
+};
