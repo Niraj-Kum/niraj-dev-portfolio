@@ -77,7 +77,7 @@ const Navbar = () => {
       {/* <NavToggle onClick={() => setMenuOpen(!menuOpen)} menuOpen={menuOpen} /> */}
       <nav className={"nav"}>
         <div className={"navList"}>
-          {navLinks.map(({ label, pathname }) => (
+          {navLinks.map(({ label }) => (
             <div
               key={label}
               style={{
@@ -113,7 +113,7 @@ const Navbar = () => {
       >
         {(status: string) => (
           <nav className={"mobileNav"}>
-            {navLinks.map(({ label, pathname }, index) => (
+            {navLinks.map(({ label }, index) => (
               <div
                 // unstable_viewTransition
                 // prefetch="intent"

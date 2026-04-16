@@ -15,6 +15,8 @@ import Navbar from "./screens/Navbar";
 
 // Create contexts with initial types
 export const AppContext = createContext<any>(undefined);
+export const TransitionContext = createContext<any>(undefined);
+
 
 function App() {
   const [storedTheme] = useLocalStorage("theme", "dark");
