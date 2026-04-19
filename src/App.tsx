@@ -10,11 +10,11 @@ import { usePrefersReducedMotion } from "./hooks/usePrefersReducedMotion";
 import { theme } from "./utils/theme";
 import { config as transitionConfig } from "react-transition-group";
 import { ThemeProvider } from "@mui/material";
-import { ThemeToggle } from "./components/theme-toggle/ThemeToggle";
 import Navbar from "./screens/Navbar";
 
 // Create contexts with initial types
 export const AppContext = createContext<any>(undefined);
+export const TransitionContext = createContext<any>(undefined);
 
 function App() {
   const [storedTheme] = useLocalStorage("theme", "dark");
@@ -42,10 +42,11 @@ function App() {
     <>
       <ThemeProvider theme={currentTheme}>
         <AppContext.Provider value={{ ...state, dispatch }}>
-          <ThemeToggle />
-          <GlobalStyles theme={currentTheme} />
-          <Navbar />
-          <MainScreen />
+          <TransitionContext.Provider value={{}}>
+            <GlobalStyles theme={currentTheme} />
+            <Navbar />
+            <MainScreen />
+          </TransitionContext.Provider>
         </AppContext.Provider>
       </ThemeProvider>
     </>

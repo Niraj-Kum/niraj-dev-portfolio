@@ -6,4 +6,13 @@
     --collapsed: false;
     --collapseDelay: 0;
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  margin: 0;
+}
   
