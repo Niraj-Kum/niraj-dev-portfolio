@@ -1,0 +1,219 @@
+/* ─────────────────────────────────────────────────────────────
+   Theme Variables
+───────────────────────────────────────────────────────────── */
+.articles-section.articles--dark {
+  --art-bg:             #0a0a0a;
+  --art-text-primary:   #e8e8e8;
+  --art-title-color:    #e8e8e8;
+  --art-text-secondary: rgba(255, 255, 255, 0.60);
+  --art-accent:         #2dd4bf;
+  --art-border-color:   rgba(255, 255, 255, 0.09);
+  --art-num-color:      rgba(255, 255, 255, 0.18);
+  --art-divider:        rgba(255, 255, 255, 0.06);
+}
+
+.articles-section.articles--light {
+  --art-bg:             #f5f5f5;
+  --art-text-primary:   #0a0a0a;
+  --art-title-color:    #0a0a0a;
+  --art-text-secondary: rgba(0, 0, 0, 0.65);
+  --art-accent:         #2dd4bf;
+  --art-border-color:   rgba(0, 0, 0, 0.10);
+  --art-num-color:      rgba(0, 0, 0, 0.18);
+  --art-divider:        rgba(0, 0, 0, 0.08);
+}
+
+.articles-section.articles--light.section-alt { --art-bg: #e8e8e8; }
+.articles-section.articles--dark.section-alt  { --art-bg: #111111; }
+
+/* ─────────────────────────────────────────────────────────────
+   Section base
+───────────────────────────────────────────────────────────── */
+.articles-section {
+  width: 100%;
+  padding: 120px 10%;
+  background-color: var(--art-bg);
+  box-sizing: border-box;
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  color: var(--art-text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  border-bottom: 1px solid var(--art-divider);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Header
+───────────────────────────────────────────────────────────── */
+.art-header {
+  margin-bottom: 80px;
+}
+
+.art-label {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--art-accent);
+  margin-bottom: 16px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+}
+
+.art-title {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 1;
+  margin: 0 0 24px 0;
+  color: var(--art-title-color);
+}
+
+.art-title span {
+  color: var(--art-accent);
+}
+
+.art-subtitle {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--art-text-secondary);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Editorial list
+───────────────────────────────────────────────────────────── */
+.art-list {
+  border-top: 1px solid var(--art-border-color);
+}
+
+.art-list-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 48px;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--art-border-color);
+  align-items: start;
+  transition: opacity 0.2s ease;
+}
+
+.art-list-item--active {
+  cursor: pointer;
+}
+
+.art-list-item--active:hover .art-item-num {
+  color: var(--art-accent);
+}
+
+.art-list-item--active:hover .art-item-title {
+  transform: translateX(10px);
+}
+
+.art-list-item--dimmed {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Number */
+.art-item-num {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--art-num-color);
+  letter-spacing: 0.08em;
+  padding-top: 6px;
+  transition: color 0.25s ease;
+}
+
+/* Body */
+.art-item-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.art-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.art-tag {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--art-accent);
+  border: 0.5px solid rgba(45, 212, 191, 0.25);
+  padding: 3px 10px;
+}
+
+.art-coming-soon-badge {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--art-text-secondary);
+  border: 0.5px solid var(--art-border-color);
+  padding: 3px 8px;
+}
+
+.art-item-title {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--art-title-color);
+  line-height: 1.2;
+  margin: 0 0 16px 0;
+  transition: transform 0.3s ease;
+}
+
+.art-item-excerpt {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--art-text-secondary);
+  line-height: 1.75;
+  margin: 0;
+  max-width: 680px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Footer note
+───────────────────────────────────────────────────────────── */
+.art-footer-note {
+  margin-top: 48px;
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--art-text-secondary);
+  opacity: 0.7;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive
+───────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .art-list-item {
+    grid-template-columns: 56px 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 696px) {
+  .articles-section {
+    padding: 80px 6%;
+  }
+  .art-title {
+    font-size: 48px;
+  }
+  .art-list-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 36px 0;
+  }
+  .art-item-title {
+    font-size: 24px;
+  }
+  .art-list-item--active:hover .art-item-title {
+    transform: none;
+  }
+}
