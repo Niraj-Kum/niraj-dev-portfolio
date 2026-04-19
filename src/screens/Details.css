@@ -1,0 +1,278 @@
+/* ─────────────────────────────────────────────────────────────
+   Theme Variables
+───────────────────────────────────────────────────────────── */
+.details-section.details--dark {
+  --det-bg:            #0a0a0a;
+  --det-text-primary:  #e8e8e8;
+  --det-text-secondary: rgba(255, 255, 255, 0.65);
+  --det-text-tertiary:  rgba(255, 255, 255, 0.40);
+  --det-card-bg:       rgba(255, 255, 255, 0.03);
+  --det-border-color:  rgba(255, 255, 255, 0.09);
+  --det-accent:        #2dd4bf;
+  --det-divider:       rgba(255, 255, 255, 0.06);
+  --det-circle-bg:     rgba(45, 212, 191, 0.07);
+  --det-circle-border: rgba(45, 212, 191, 0.25);
+}
+
+.details-section.details--light {
+  --det-bg:            #f5f5f5;
+  --det-text-primary:  #0a0a0a;
+  --det-title-color:   #0a0a0a;
+  --det-text-secondary: rgba(0, 0, 0, 0.68);
+  --det-text-tertiary:  rgba(0, 0, 0, 0.45);
+  --det-card-bg:       rgba(0, 0, 0, 0.02);
+  --det-border-color:  rgba(0, 0, 0, 0.10);
+  --det-accent:        #2dd4bf;
+  --det-divider:       rgba(0, 0, 0, 0.08);
+  --det-circle-bg:     rgba(45, 212, 191, 0.10);
+  --det-circle-border: rgba(45, 212, 191, 0.35);
+}
+
+.details-section.details--light.section-alt { --det-bg: #e8e8e8; }
+.details-section.details--dark.section-alt  { --det-bg: #111111; }
+
+/* ─────────────────────────────────────────────────────────────
+   Section base
+───────────────────────────────────────────────────────────── */
+.details-section {
+  width: 100%;
+  padding: 120px 10%;
+  background-color: var(--det-bg);
+  box-sizing: border-box;
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  color: var(--det-text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  border-bottom: 1px solid var(--det-divider);
+}
+
+/* Section label */
+.det-label {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--det-accent);
+  margin-bottom: 64px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Intro split
+───────────────────────────────────────────────────────────── */
+.det-intro-split {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 80px;
+  align-items: start;
+  margin-bottom: 100px;
+}
+
+.det-hi-heading {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 64px;
+  line-height: 1.05;
+  color: var(--det-title-color, var(--det-text-primary));
+  margin: 0 0 40px 0;
+}
+
+.det-intro-bio {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--det-text-secondary);
+  max-width: 560px;
+}
+
+.det-intro-bio p {
+  margin: 0 0 20px 0;
+}
+
+.det-intro-bio b {
+  font-weight: 500;
+  color: var(--det-title-color, var(--det-text-primary));
+}
+
+/* Profile circle */
+.det-intro-right {
+  padding-top: 8px;
+}
+
+.det-profile-circle {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: var(--det-circle-bg);
+  border: 1px solid var(--det-circle-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 56px;
+  color: var(--det-accent);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Bottom two-column: skills + experience
+───────────────────────────────────────────────────────────── */
+.det-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.det-section-subhead {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.20em;
+  color: var(--det-text-tertiary);
+  margin-bottom: 20px;
+}
+
+/* ── Skills ── */
+.det-skills-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.det-skill-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  padding: 18px 20px;
+  background-color: var(--det-card-bg);
+  border: 0.5px solid var(--det-border-color);
+  align-items: start;
+  gap: 16px;
+}
+
+.details-section.details--light .det-skill-row {
+  border: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.det-skill-label {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--det-accent);
+  font-weight: 700;
+  padding-top: 3px;
+}
+
+.det-skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.det-skill-tag {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 13px;
+  color: var(--det-text-secondary);
+  border: 0.5px solid var(--det-border-color);
+  padding: 4px 12px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.details-section.details--light .det-skill-tag {
+  border: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+/* ── Experience list ── */
+.det-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.det-item {
+  padding: 28px 0;
+  border-bottom: 0.5px solid var(--det-border-color);
+}
+
+.det-item:first-child {
+  border-top: 0.5px solid var(--det-border-color);
+}
+
+.details-section.details--light .det-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+}
+.details-section.details--light .det-item:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.det-item-company {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--det-title-color, var(--det-text-primary));
+  margin-bottom: 4px;
+}
+
+.det-item-role {
+  font-size: 14px;
+  color: var(--det-accent);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.det-item-period {
+  font-size: 12px;
+  color: var(--det-text-tertiary);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.det-item-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.det-item-tag {
+  font-size: 11px;
+  color: var(--det-text-secondary);
+  background-color: var(--det-card-bg);
+  border: 0.5px solid var(--det-border-color);
+  padding: 3px 10px;
+  border-radius: 1px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive
+───────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .det-intro-split {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .det-intro-right {
+    order: -1;
+  }
+  .det-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+}
+
+@media (max-width: 696px) {
+  .det-hi-heading {
+    font-size: 46px;
+  }
+  .det-profile-circle {
+    width: 160px;
+    height: 160px;
+    font-size: 36px;
+  }
+  .details-section {
+    padding: 80px 6%;
+  }
+}
