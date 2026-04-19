@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment, lazy, Suspense, useMemo, useState } from "react";
+import { Fragment, lazy, Suspense, useMemo, useRef, useState } from "react";
 import { Transition, TransitionGroup } from "react-transition-group";
 import prerender from "../utils/prerender";
 import { reflow } from "../utils/transition";
@@ -17,7 +17,7 @@ const SphereAnim = lazy(() =>
 
 const Home = (props: any) => {
   const theme = useTheme();
-  // console.log(theme);
+
   const { id, sectionRef, disciplines, scrollIndicatorHidden, ...rest } = props;
   const titleId = `${id}-title`;
   const [disciplineIndex, setDisciplineIndex] = useState(0);
@@ -48,6 +48,7 @@ const Home = (props: any) => {
       className={`home-section section-padding`}
     >
       <Transition
+        nodeRef={sectionRef}
         key={theme.palette.mode}
         appear={!prerender}
         in={!prerender}
@@ -108,50 +109,12 @@ const Home = (props: any) => {
                 >
                   <TransitionGroup>
                     {currentDisciplines.map((_item: any, index: any) => (
-                      <Transition
-                        appear
-                        timeout={{ enter: 4000, exit: 2000 }}
+                      <DisciplineItem
                         key={_item + "_" + index}
-                        onEnter={reflow}
-                      >
-                        {(wordStatus) => (
-                          <span
-                            key={_item + "_" + index}
-                            className="add-plus developer-word developer-word-delay2"
-                            style={
-                              wordStatus === "exiting"
-                                ? {
-                                    color: `${
-                                      theme.palette.mode === "light"
-                                        ? "rgba(0, 0, 0, 0)"
-                                        : "rgba(255, 255, 255, 0)"
-                                    }`,
-                                    opacity: 0,
-                                    position: "absolute",
-                                    top: 0,
-                                    zIndex: 0,
-                                    animationName:
-                                      theme.palette.mode === "dark"
-                                        ? "AnimTextRevealDark"
-                                        : "AnimTextRevealLight",
-                                  }
-                                : {
-                                    color: `${
-                                      theme.palette.mode === "light"
-                                        ? "rgba(0, 0, 0, 0)"
-                                        : "rgba(255, 255, 255, 0)"
-                                    }`,
-                                    animationName:
-                                      theme.palette.mode === "dark"
-                                        ? "AnimTextRevealDark"
-                                        : "AnimTextRevealLight",
-                                  }
-                            }
-                          >
-                            {_item}
-                          </span>
-                        )}
-                      </Transition>
+                        item={_item}
+                        index={index}
+                        theme={theme}
+                      />
                     ))}
                   </TransitionGroup>
                 </span>
@@ -213,6 +176,59 @@ const Home = (props: any) => {
         )}
       </Transition>
     </section>
+  );
+};
+
+const DisciplineItem = ({ item, index, theme, ...props }: any) => {
+  const itemRef = useRef(null);
+
+  return (
+    <Transition
+      {...props}
+      nodeRef={itemRef}
+      appear
+      timeout={{ enter: 4000, exit: 2000 }}
+      onEnter={reflow}
+    >
+      {(wordStatus) => (
+        <span
+          ref={itemRef}
+          key={item + "_" + index}
+          className="add-plus developer-word developer-word-delay2"
+          style={
+            wordStatus === "exiting"
+              ? {
+                  color: `${
+                    theme.palette.mode === "light"
+                      ? "rgba(0, 0, 0, 0)"
+                      : "rgba(255, 255, 255, 0)"
+                  }`,
+                  opacity: 0,
+                  position: "absolute",
+                  top: 0,
+                  zIndex: 0,
+                  animationName:
+                    theme.palette.mode === "dark"
+                      ? "AnimTextRevealDark"
+                      : "AnimTextRevealLight",
+                }
+              : {
+                  color: `${
+                    theme.palette.mode === "light"
+                      ? "rgba(0, 0, 0, 0)"
+                      : "rgba(255, 255, 255, 0)"
+                  }`,
+                  animationName:
+                    theme.palette.mode === "dark"
+                      ? "AnimTextRevealDark"
+                      : "AnimTextRevealLight",
+                }
+          }
+        >
+          {item}
+        </span>
+      )}
+    </Transition>
   );
 };
 

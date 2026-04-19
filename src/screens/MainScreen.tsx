@@ -1,17 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
-import Home from "./Home";
 
-const disciplines = ["Engineer", "Full Stack", "Coder"];
+import Home from "./Home";
+import Projects from "./Projects";
+import Details from "./Details";
+import Articles from "./Articles";
+import Contact from "./Contact";
+
+const disciplines = ["Engineer", "AI Builder", "Full Stack", "DevOps", "Shipper"];
 
 const MainScreen = () => {
   const intro = useRef<any>();
+  const projectRef = useRef<any>();
+  const detailsRef = useRef<any>();
+  const articlesRef = useRef<any>();
+  const contactRef = useRef<any>();
   const [visibleSections, setVisibleSections] = useState<any>([]);
   const [scrollIndicatorHidden, setScrollIndicatorHidden] =
     useState<boolean>(false);
 
   useEffect(() => {
-    const revealSections = [intro];
+    const revealSections = [intro, projectRef, detailsRef, articlesRef, contactRef];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -61,22 +70,24 @@ const MainScreen = () => {
         disciplines={disciplines}
         scrollIndicatorHidden={scrollIndicatorHidden}
       />
-      {/* <Experience /> */}
-      {/* <Project
-        id="project-1"
-        sectionRef={projectOne}
-        visible={true}
-        index="01"
-        title="A Tool for Everything"
-        description="Creating a platfrom to help developers build better software."
-        buttonText="View Project"
-        buttonTo="/projects/dtt"
-        imageSrc={useMemo(() => [`${dttProject} 980w, ${dttProjectLarge} 1376w`], [])}
-        imageAlt={useMemo(() => ['DevTech Tools Landing Page'], [])}
-        imagePlaceholder={useMemo(() => [dttProjectPlaceholder], [])}
-        imageType="laptop"
+      <Projects 
+        id="projects"
+        sectionRef={projectRef}
       />
-      <Skills sectionRef={skillRef} /> */}
+      <Details 
+        id="details"
+        sectionRef={detailsRef}
+        className="section-alt"
+      />
+      <Articles 
+        id="articles"
+        sectionRef={articlesRef}
+      />
+      <Contact 
+        id="contact"
+        sectionRef={contactRef}
+        className="section-alt"
+      />
     </>
   );
 };

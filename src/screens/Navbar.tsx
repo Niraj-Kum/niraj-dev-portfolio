@@ -11,22 +11,10 @@ import { reflow } from "../utils/transition";
 import { Monogram } from "../components/monogram/monogram";
 
 const navLinks = [
-  {
-    label: "Projects",
-    pathname: "/#project-1",
-  },
-  {
-    label: "Details",
-    pathname: "/#details",
-  },
-  {
-    label: "Articles",
-    pathname: "/articles",
-  },
-  {
-    label: "Contact",
-    pathname: "/contact",
-  },
+  { label: "Projects", sectionId: "projects" },
+  { label: "Details",  sectionId: "details"  },
+  { label: "Articles", sectionId: "articles" },
+  { label: "Contact",  sectionId: "contact"  },
 ];
 
 const socialLinks = [
@@ -55,18 +43,13 @@ const Navbar = () => {
   const windowSize = useWindowSize();
   const isMobile = windowSize.width <= media.mobile || windowSize.height <= 696;
 
-  const handleNavItemClick = (event: any) => {
-    const hash = event.currentTarget.href.split("#")[1];
-    // setTarget(null);
-
-    if (hash && location.pathname === "/") {
-      // setTarget(`#${hash}`);
-      event.preventDefault();
-    }
+  const scrollToSection = (sectionId: string) => {
+    const el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleMobileNavClick = (event: any) => {
-    handleNavItemClick(event);
+  const handleMobileNavClick = (sectionId: string) => {
+    scrollToSection(sectionId);
     if (menuOpen) setMenuOpen(false);
   };
   return (
@@ -77,7 +60,7 @@ const Navbar = () => {
       {/* <NavToggle onClick={() => setMenuOpen(!menuOpen)} menuOpen={menuOpen} /> */}
       <nav className={"nav"}>
         <div className={"navList"}>
-          {navLinks.map(({ label, pathname }) => (
+          {navLinks.map(({ label, sectionId }) => (
             <div
               key={label}
               style={{
@@ -88,22 +71,15 @@ const Navbar = () => {
                 } 80%, transparent)`,
                 cursor: 'pointer'
               }}
-              //     RouterLink
-              //   unstable_viewTransition
-              //   prefetch="intent"
-              //   to={pathname}
-              //   key={label}
-              //   data-navbar-item
               className={`navLink navlink-${theme.palette.mode}`}
-              //   aria-current={getCurrent(pathname)}
-              //   onClick={handleNavItemClick}
+              onClick={() => scrollToSection(sectionId)}
             >
               {label}
             </div>
           ))}
         </div>
         <NavbarIcons desktop theme={theme} />
-        <ThemeToggle isMobile />
+        {/* <ThemeToggle isMobile={true} /> */}
       </nav>
       <Transition
         unmount
@@ -113,16 +89,11 @@ const Navbar = () => {
       >
         {(status: string) => (
           <nav className={"mobileNav"}>
-            {navLinks.map(({ label, pathname }, index) => (
+            {navLinks.map(({ label, sectionId }, index) => (
               <div
-                // unstable_viewTransition
-                // prefetch="intent"
-                // to={pathname}
                 key={label}
                 className={"mobileNavLink"}
-                // data-visible={visible}
-                // aria-current={getCurrent(pathname)}
-                onClick={handleMobileNavClick}
+                onClick={() => handleMobileNavClick(sectionId)}
                 style={
                   status === "entered"
                     ? {
@@ -153,7 +124,7 @@ const Navbar = () => {
               </div>
             ))}
             <NavbarIcons theme={theme} />
-            <ThemeToggle isMobile />
+            {/* <ThemeToggle isMobile={true} /> */}
           </nav>
         )}
       </Transition>
