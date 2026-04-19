@@ -1,0 +1,263 @@
+/* ─────────────────────────────────────────────────────────────
+   Theme Variables
+───────────────────────────────────────────────────────────── */
+.contact-section.contact--dark {
+  --con-bg:             #0a0a0a;
+  --con-text-primary:   #e8e8e8;
+  --con-title-color:    #e8e8e8;
+  --con-text-secondary: rgba(255, 255, 255, 0.60);
+  --con-text-tertiary:  rgba(255, 255, 255, 0.40);
+  --con-input-bg:       rgba(255, 255, 255, 0.04);
+  --con-input-border:   rgba(255, 255, 255, 0.12);
+  --con-accent:         #2dd4bf;
+  --con-footer-text:    rgba(255, 255, 255, 0.18);
+  --con-divider:        rgba(255, 255, 255, 0.06);
+  --con-border:         rgba(255, 255, 255, 0.09);
+}
+
+.contact-section.contact--light {
+  --con-bg:             #f5f5f5;
+  --con-text-primary:   #0a0a0a;
+  --con-title-color:    #0a0a0a;
+  --con-text-secondary: rgba(0, 0, 0, 0.65);
+  --con-text-tertiary:  rgba(0, 0, 0, 0.45);
+  --con-input-bg:       rgba(0, 0, 0, 0.03);
+  --con-input-border:   rgba(0, 0, 0, 0.12);
+  --con-accent:         #2dd4bf;
+  --con-footer-text:    rgba(0, 0, 0, 0.18);
+  --con-divider:        rgba(0, 0, 0, 0.08);
+  --con-border:         rgba(0, 0, 0, 0.10);
+}
+
+.contact-section.contact--light.section-alt { --con-bg: #e8e8e8; }
+.contact-section.contact--dark.section-alt  { --con-bg: #111111; }
+
+/* ─────────────────────────────────────────────────────────────
+   Section base
+───────────────────────────────────────────────────────────── */
+.contact-section {
+  width: 100%;
+  padding: 120px 10% 0;
+  background-color: var(--con-bg);
+  box-sizing: border-box;
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  color: var(--con-text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Hero block
+───────────────────────────────────────────────────────────── */
+.con-hero {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.con-label {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--con-accent);
+  margin-bottom: 24px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+}
+
+.con-big-title {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 80px;
+  line-height: 1.0;
+  color: var(--con-title-color);
+  margin: 0 0 28px 0;
+}
+
+.con-tagline {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--con-text-secondary);
+  margin: 0 0 48px 0;
+  line-height: 1.6;
+}
+
+/* ── Inline links ── */
+.con-links-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.con-link {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--con-text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--con-border);
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.con-link:hover {
+  color: var(--con-accent);
+  border-color: var(--con-accent);
+}
+
+.con-link-sep {
+  font-size: 22px;
+  color: var(--con-text-tertiary);
+  user-select: none;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Form
+───────────────────────────────────────────────────────────── */
+.con-form {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.con-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.con-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.con-field-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--con-text-tertiary);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.con-input,
+.con-textarea {
+  width: 100%;
+  background-color: var(--con-input-bg);
+  border: 0.5px solid var(--con-input-border);
+  color: var(--con-text-primary);
+  padding: 16px 20px;
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  border-radius: 0;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.contact-section.contact--light .con-input,
+.contact-section.contact--light .con-textarea {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.con-textarea {
+  height: 140px;
+  resize: none;
+}
+
+.con-input:focus,
+.con-textarea:focus {
+  border-color: rgba(45, 212, 191, 0.4);
+}
+
+.con-input::placeholder,
+.con-textarea::placeholder {
+  color: var(--con-text-tertiary);
+}
+
+.con-submit-btn {
+  width: 100%;
+  background-color: var(--con-accent);
+  color: #0a0a0a;
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  padding: 18px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.con-submit-btn:hover {
+  opacity: 0.88;
+}
+
+.con-success-msg {
+  color: var(--con-accent);
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  padding: 16px 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Footer
+───────────────────────────────────────────────────────────── */
+.con-footer {
+  margin-top: 100px;
+  padding: 40px 0;
+  border-top: 0.5px solid var(--con-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.con-footer-name {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--con-footer-text);
+  letter-spacing: 0.05em;
+}
+
+.con-footer-info {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--con-footer-text);
+  letter-spacing: 0.02em;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive
+───────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .con-field-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 696px) {
+  .contact-section {
+    padding: 80px 6% 0;
+  }
+  .con-big-title {
+    font-size: 52px;
+  }
+  .con-links-row {
+    gap: 14px;
+  }
+  .con-link {
+    font-size: 16px;
+  }
+  .con-footer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}
