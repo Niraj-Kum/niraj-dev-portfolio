@@ -1,0 +1,473 @@
+/* ─────────────────────────────────────────────────────────────
+   Theme Variables
+───────────────────────────────────────────────────────────── */
+.projects-section.projects--dark {
+  --pj-bg:               #0a0a0a;
+  --pj-text:             #e8e8e8;
+  --pj-text-dim:         rgba(255, 255, 255, 0.60);
+  --pj-text-extra-dim:   rgba(255, 255, 255, 0.35);
+  --pj-accent:           #2dd4bf;
+  --pj-border:           rgba(255, 255, 255, 0.09);
+  --pj-card-bg:          rgba(255, 255, 255, 0.03);
+  --pj-ghost-num:        rgba(45, 212, 191, 0.08);
+  --pj-tag-bg:           rgba(255, 255, 255, 0.05);
+  --pj-tag-border:       rgba(255, 255, 255, 0.10);
+  --pj-tag-text:         rgba(255, 255, 255, 0.50);
+  --pj-mockup-bg:        #0d1117;
+  --pj-mockup-border:    rgba(45, 212, 191, 0.25);
+  --pj-mockup-bar:       rgba(255, 255, 255, 0.03);
+  --pj-mockup-dot:       rgba(255, 255, 255, 0.12);
+  --pj-divider:          rgba(255, 255, 255, 0.06);
+  --pj-upcoming-bg:      #0f0f0f;
+}
+
+.projects-section.projects--light {
+  --pj-bg:               #fafafa;
+  --pj-text:             #0a0a0a;
+  --pj-text-dim:         rgba(0, 0, 0, 0.65);
+  --pj-text-extra-dim:   rgba(0, 0, 0, 0.40);
+  --pj-accent:           #2dd4bf;
+  --pj-border:           rgba(0, 0, 0, 0.10);
+  --pj-card-bg:          rgba(0, 0, 0, 0.02);
+  --pj-ghost-num:        rgba(45, 212, 191, 0.08);
+  --pj-tag-bg:           rgba(0, 0, 0, 0.03);
+  --pj-tag-border:       rgba(0, 0, 0, 0.12);
+  --pj-tag-text:         rgba(0, 0, 0, 0.55);
+  --pj-mockup-bg:        #1a1a2e;
+  --pj-mockup-border:    rgba(45, 212, 191, 0.30);
+  --pj-mockup-bar:       rgba(255, 255, 255, 0.05);
+  --pj-mockup-dot:       rgba(255, 255, 255, 0.20);
+  --pj-divider:          rgba(0, 0, 0, 0.08);
+  --pj-upcoming-bg:      #f0f0f0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Section wrapper
+───────────────────────────────────────────────────────────── */
+.projects-section {
+  width: 100%;
+  background-color: var(--pj-bg);
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  color: var(--pj-text);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Featured full-viewport
+───────────────────────────────────────────────────────────── */
+.pj-featured-viewport {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 10% 80px;
+  box-sizing: border-box;
+  overflow: hidden;
+  scroll-snap-align: start;
+  border-bottom: 1px solid var(--pj-divider);
+}
+
+/* Ghost number */
+.pj-ghost-number {
+  position: absolute;
+  top: 48px;
+  left: 8%;
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 180px;
+  color: var(--pj-ghost-num);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Two-column layout */
+.pj-featured-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Left column ── */
+.pj-featured-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.pj-label {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--pj-accent);
+  margin-bottom: 24px;
+}
+
+.pj-project-name {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 80px;
+  line-height: 1;
+  color: var(--pj-text);
+  margin: 0 0 14px 0;
+}
+
+.pj-project-subtitle {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: var(--pj-text-dim);
+  margin: 0 0 28px 0;
+  line-height: 1.4;
+}
+
+.pj-project-desc {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--pj-text-dim);
+  max-width: 480px;
+  margin: 0 0 36px 0;
+}
+
+.pj-project-desc span {
+  color: var(--pj-accent);
+}
+
+/* Metrics */
+.pj-metrics-row {
+  display: flex;
+  gap: 36px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.pj-metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.pj-metric-val {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 36px;
+  color: var(--pj-accent);
+  line-height: 1;
+}
+
+.pj-metric-label {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--pj-text-extra-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+/* Tech tags */
+.pj-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.pj-tag {
+  padding: 5px 12px;
+  background: var(--pj-tag-bg);
+  border: 0.5px solid var(--pj-tag-border);
+  color: var(--pj-tag-text);
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.projects-section.projects--light .pj-tag {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/* GitHub link */
+.pj-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--pj-accent);
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+  width: fit-content;
+}
+
+.pj-github-link:hover {
+  border-color: var(--pj-accent);
+}
+
+.pj-link-arrow {
+  font-size: 18px;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.pj-github-link:hover .pj-link-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ── Right column — mockup ── */
+.pj-featured-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pj-mockup-frame {
+  width: 100%;
+  max-width: 560px;
+  height: 400px;
+  background: var(--pj-mockup-bg);
+  border-radius: 12px;
+  border: 1px solid var(--pj-mockup-border);
+  overflow: hidden;
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(45, 212, 191, 0.06);
+}
+
+.pj-mockup-titlebar {
+  height: 36px;
+  background: var(--pj-mockup-bar);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 7px;
+}
+
+.pj-mockup-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--pj-mockup-dot);
+  flex-shrink: 0;
+}
+
+.pj-mockup-urlbar {
+  flex: 1;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 3px;
+  margin-left: 8px;
+}
+
+.pj-mockup-body {
+  display: flex;
+  height: calc(100% - 36px);
+}
+
+.pj-mockup-sidebar {
+  width: 52px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.02);
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.pj-mockup-content-area {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pj-mockup-glow {
+  position: absolute;
+  top: -60px;
+  left: -40px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pj-mockup-placeholder-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(45, 212, 191, 0.35);
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.pj-mockup-hint {
+  font-size: 11px;
+  opacity: 0.55;
+}
+
+/* Scroll hint */
+.pj-scroll-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--pj-text-extra-dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Coming-soon section
+───────────────────────────────────────────────────────────── */
+.pj-upcoming-section {
+  background: var(--pj-upcoming-bg);
+  padding: 80px 10% 120px;
+  transition: background 0.4s ease;
+}
+
+.pj-upcoming-label {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--pj-text-extra-dim);
+  margin-bottom: 40px;
+}
+
+.pj-coming-soon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.pj-cs-card {
+  padding: 36px;
+  background: var(--pj-card-bg);
+  border: 0.5px solid var(--pj-border);
+  position: relative;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s ease;
+}
+
+.projects-section.projects--light .pj-cs-card {
+  border: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.pj-cs-card:hover {
+  background: rgba(45, 212, 191, 0.03);
+}
+
+.pj-cs-num {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--pj-accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+
+.pj-cs-title {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "Osaka", "メイリオ", "Meiryo", "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--pj-text);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.pj-cs-desc {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--pj-text-dim);
+  line-height: 1.65;
+  margin: 0 0 20px 0;
+  flex: 1;
+}
+
+.pj-cs-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pj-cs-tag {
+  font-family: "Gotham", "system-ui", "-apple-system", "BlinkMacSystemFont", "San Francisco", "Roboto", "Segoe UI", "Ubuntu", "Helvetica Neue", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pj-accent);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Responsive
+───────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .pj-featured-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .pj-featured-right {
+    order: -1;
+  }
+  .pj-mockup-frame {
+    height: 280px;
+  }
+  .pj-ghost-number {
+    font-size: 120px;
+  }
+  .pj-coming-soon-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 696px) {
+  .pj-featured-viewport {
+    padding: 80px 6% 60px;
+  }
+  .pj-project-name {
+    font-size: 52px;
+  }
+  .pj-project-subtitle {
+    font-size: 18px;
+  }
+  .pj-ghost-number {
+    font-size: 80px;
+    top: 20px;
+  }
+  .pj-coming-soon-grid {
+    grid-template-columns: 1fr;
+  }
+  .pj-metrics-row {
+    gap: 24px;
+  }
+  .pj-mockup-frame {
+    height: 220px;
+  }
+  .pj-upcoming-section {
+    padding: 60px 6% 80px;
+  }
+}
