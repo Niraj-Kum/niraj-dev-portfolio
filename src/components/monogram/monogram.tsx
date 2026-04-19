@@ -25,10 +25,10 @@ export const Monogram = forwardRef(({ highlight, className, ...props }: any, ref
           <text
             x="50%"
             y="50%"
-            text-anchor="middle"
-            dominant-baseline="middle"
-            font-family="serif"
-            font-size="80"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fontFamily="serif"
+            fontSize="80"
           >
             N
           </text>
